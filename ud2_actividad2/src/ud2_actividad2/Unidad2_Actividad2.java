@@ -412,6 +412,11 @@ public class Unidad2_Actividad2 {
 				+ "trabajador y el precio base de la hora de trabajo");
 		System.out.println("Luego el programa nos va a hacer una serie de cálculos y los mostrará por pantalla");
 		
+		//Declaro una variable String para almacenar el nombre del trabajador introducido por teclado
+		
+		String nombre;
+		nombre = teclado.next();
+		
 		//Lo primero que tengo que hacer es indicar el precio al que se pagan las horas y las horas trabajadas
 		//Para ello declararé dos variable que almacenarán los datos después de solicitarlas por teclado
 		
@@ -422,7 +427,36 @@ public class Unidad2_Actividad2 {
 		System.out.println("Introduca el precio base de la hora de trabajo");
 		precioHora = teclado.nextDouble();
 		
-
+		//Ahora debo declarar una variable que almacenara el sueldo bruto total después de calcular 
+		//lo que se debe de pagar por cada hora
+		
+		double salarioBruto;
+		
+		//Evaluo todo lo que debo de pagar según las condiciones que especifica el ejercicio
+		
+		if(horasTrabajadas > 35) {
+			salarioBruto = ((horasTrabajadas - 35) * (precioHora * 1.5)) + (35 * precioHora);
+		}else {
+			salarioBruto = precioHora * horasTrabajadas;
+		}
+		
+		//Tengo que calcular ahora los impuestos, así que voy a declarar una variable para los impuestos
+		
+		double tasas;
+		
+		if(salarioBruto>500 && salarioBruto<=900) {
+			tasas = 400 * 0.25;
+		}else if (salarioBruto > 900) {
+			tasas = (400 * 0.25) + ((salarioBruto - 900) * 0.45);
+		}else {
+			tasas = 0.0;
+		}
+		
+		System.out.println("El nombre del trabajador es : " + nombre);
+		System.out.println("Las horas trabajadas por " + nombre + " son: " + horasTrabajadas);
+		System.out.println("El salario bruto del trabajador es : " + salarioBruto);
+		System.out.println("Las tasas que debe de abonar el trabajador son : " + tasas);
+		System.out.println("El salario neto del trabajador es de: " + (salarioBruto - tasas));
 	}
 
 }
