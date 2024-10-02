@@ -23,6 +23,52 @@ public class Ud2_Actividad3 {
 				+ "el número menor de billetes necesarios para sumar dicha cantidad");
 		
 		dinero = teclado.nextDouble();
+
+		System.out.println("El dinero del que vamos a calcular los billetes necesarios es :" + dinero);
+
+		//Debo declarar variables para lamacenar billetes
+
+		int bill500 = 0, bill200 = 0, bill100 = 0, bill50 = 0, bill20 = 0, bill10 = 0, bill5 = 0;
+		 
+
+		if (dinero > 500) {
+			bill500 = (int) dinero / 500; //Tengo que castear a int, ya que le dije que el dinero era double
+			dinero = dinero%500;
+		}
+
+		if (dinero > 200) {
+			bill200 = (int) dinero / 200; //Tengo que castear a int, ya que le dije que el dinero era double
+			dinero = dinero%200;
+		}
+
+		if (dinero > 100) {
+			bill100 = (int) dinero / 100; //Tengo que castear a int, ya que le dije que el dinero era double
+			dinero = dinero%100;
+		}
+
+		if (dinero > 50) {
+			bill50 = (int) dinero / 50; //Tengo que castear a int, ya que le dije que el dinero era double
+			dinero = dinero%50;
+		}
+
+		if (dinero > 20) {
+			bill20 = (int) dinero / 20; //Tengo que castear a int, ya que le dije que el dinero era double
+			dinero = dinero%20;
+		}
+
+		if (dinero > 10) {
+			bill10 = (int) dinero / 10; //Tengo que castear a int, ya que le dije que el dinero era double
+			dinero = dinero%10;
+		}
+
+		if (dinero > 5) {
+			bill5 = (int) dinero / 5; //Tengo que castear a int, ya que le dije que el dinero era double
+			dinero = dinero%5;
+		}
+
+		//A partir de ahora hay que ir evaluando la cantidad del dinero que nos queda y modificándolo todo
+
+
 //		Realiza un programa que muestre un menú de opciones como el siguiente:
 //		1. Sumar
 //		2. Restar
