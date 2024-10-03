@@ -61,13 +61,20 @@ public class Ud2_Actividad3 {
 			dinero = dinero%10;
 		}
 
-		if (dinero > 5) {
+		if (dinero >= 5) {
 			bill5 = (int) dinero / 5; //Tengo que castear a int, ya que le dije que el dinero era double
 			dinero = dinero%5;
 		}
 
 		//A partir de ahora hay que ir evaluando la cantidad del dinero que nos queda y modificándolo todo
-
+		System.out.println("La cantidad de billetes para sumar el dinero deseado es de: \n"
+		+"Billetes de 500: " + bill500 +"\n"
+		+"Billetes de 200: " + bill200 +"\n"
+		+"Billetes de 100: " + bill100 +"\n"
+		+"Billetes de 50: " + bill50 +"\n"
+		+"Billetes de 20: " + bill20 +"\n"
+		+"Billetes de 10: " + bill10 +"\n"
+		+"Billetes de 5: " + bill5 + ", y " + dinero + " en monedas");
 
 //		Realiza un programa que muestre un menú de opciones como el siguiente:
 //		1. Sumar
@@ -76,6 +83,66 @@ public class Ud2_Actividad3 {
 //		4. Dividir (incluir manejo de división por 0)
 //		5. Salir
 //		El menú debe de repetirse hasta que se escoja la opción 5 (Salir).
+
+		//Lo primero que voy a hacer es definir dos variables que van a ser los números correspondiente
+		double numero1, numero2;
+
+		System.out.println("Se le va a mostrar un menú de operaciones, sigue los pasos");
+
+		boolean salir = false; //Declaro esta variable boolean para controlar la salida del bucle
+
+		int opcion = 0;   //Declaro esta variable para compararle con la opción seleccionada
+
+		do { 
+			System.out.println("Elija una de las opciones");
+			System.out.println("1 - Suma\n"
+			+"2 - Resta\n"
+			+"3 - Multiplicación\n"
+			+"4 - División\n"
+			+"5 - Salir\n");
+			opcion = teclado.nextInt();
+			switch(opcion){
+				case 1:
+					System.out.println("Introduce el primer número");
+					numero1 = teclado.nextDouble();
+					System.out.println("Introduce el segundo número");
+					numero2 = teclado.nextDouble();
+					System.out.println("La suma de los números es " + (numero1 + numero2));
+				break;
+				case 2:
+					System.out.println("Introduce el primer número");
+					numero1 = teclado.nextDouble();
+					System.out.println("Introduce el segundo número");
+					numero2 = teclado.nextDouble();
+					System.out.println("La resta de los números es " + (numero1-numero2));
+				break;
+				case 3:
+					System.out.println("Introduce el primer número");
+					numero1 = teclado.nextDouble();
+					System.out.println("Introduce el segundo número");
+					numero2 = teclado.nextDouble();
+					System.out.println("La multiplicación de los números es " + (numero1*numero2));
+				break;
+				case 4:
+					System.out.println("Introduce el primer número");
+					numero1 = teclado.nextDouble();
+					System.out.println("Introduce el segundo número");
+					numero2 = teclado.nextDouble();
+					if(numero2 != 0){
+						System.out.println("La resta de los números es " + (numero1-numero2));	
+					}else{
+						System.err.println("La división de un número por cero es error");
+					}
+				break;
+				case 5:
+					System.out.println("El programa se va a cerrar");
+					salir = true; 
+				break;
+				default:
+				System.err.println("La opción elegida no es una opción válida");	
+			}
+		} while (!salir);
+
 
 	}
 
