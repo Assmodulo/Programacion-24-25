@@ -45,10 +45,52 @@ public class App {
         }
 
         System.out.println("La suma de todos los números introducidos es " + resultado);
+
+        System.out.println("");
+
+        
 // 3. Crea un programa que pida diez números reales por teclado, los almacene en un array,
 // y luego lo recorra para averiguar el máximo y mínimo y mostrarlos por pantalla.
+
+        System.out.println("El programa le va a pedir que introduzca diez números reales\n"
+        +"Luego recorrerá el array y buscará el número mayor y el menor para mostrarlos mas tarde");
+
+        //Usaré variables anteriores y array ya definido
+
+        int max, min; //Defino estas dos variables para almacenar los valores máximos y minimos
+
+        //completo el array
+
+        for(int i = 0; i < numeros.length; i++){
+            System.out.println("Introduzca un número entero");
+            numeros[i] = teclado.nextInt();
+        }
+
+        //inicializo los valores de máximo y mínimo igual al valor de numeros[0]
+        min = numeros[0];
+        max = numeros[0];
+
+        //Una vez completo el array lo vuelvo a recorrer para evaluar el máximo y el mínimo
+
+        for(int i = 0; i < numeros.length; i++){
+            if(numeros[i] > max){
+                max = numeros[i];
+            }else if(numeros[i] < min){
+                min = numeros[i];
+            }    
+        }
+
+        System.out.println("El número mínimo almacenado es:" + min);
+        System.out.println("El número máximo almacenado es:" + max);
+
+        System.out.println();
+
+
 // 4. Crea un programa que pida veinte números enteros por teclado, los almacene en un
 // array y luego muestre por separado la suma de todos los valores positivos y negativos.
+
+        System.out.println("El progrma le va a pedir 20 números enteros,\n"
+        +"tanto positivos como negativos y luego sumará los positivos y los negativos por separado");
 // 5. Crea un programa que pida veinte números reales por teclado, los almacene en un array
 // y luego lo recorra para calcular y mostrar la media: (suma de valores) / nº de valores.
 // 6. Crea un programa que pida dos valores enteros N y M, luego cree un array de tamaño
@@ -87,4 +129,6 @@ public class App {
 // valores: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, etc. hasta introducir 10 diez veces, y luego la
 // muestre por pantalla.
     }
+
+    
 }
