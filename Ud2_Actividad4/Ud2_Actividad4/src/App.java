@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
@@ -57,8 +58,6 @@ public class App {
 
         //Usaré variables anteriores y array ya definido
 
-        int max, min; //Defino estas dos variables para almacenar los valores máximos y minimos
-
         //completo el array
 
         for(int i = 0; i < numeros.length; i++){
@@ -66,22 +65,13 @@ public class App {
             numeros[i] = teclado.nextInt();
         }
 
-        //inicializo los valores de máximo y mínimo igual al valor de numeros[0]
-        min = numeros[0];
-        max = numeros[0];
 
-        //Una vez completo el array lo vuelvo a recorrer para evaluar el máximo y el mínimo
+        //Una vez completo el array lo ordeno de menor a mayor despues de importar Arrays
 
-        for(int i = 0; i < numeros.length; i++){
-            if(numeros[i] > max){
-                max = numeros[i];
-            }else if(numeros[i] < min){
-                min = numeros[i];
-            }    
-        }
+        Arrays.sort(numeros);
 
-        System.out.println("El número mínimo almacenado es:" + min);
-        System.out.println("El número máximo almacenado es:" + max);
+        System.out.println("El número mínimo almacenado es:" + numeros[0]);
+        System.out.println("El número máximo almacenado es:" + numeros[numeros.length - 1]);
 
         System.out.println();
 
@@ -91,6 +81,35 @@ public class App {
 
         System.out.println("El progrma le va a pedir 20 números enteros,\n"
         +"tanto positivos como negativos y luego sumará los positivos y los negativos por separado");
+
+        //Declaro dos variables para almacenar la suma de positivos y negativos
+
+        int sumPos = 0, sumNeg = 0;
+
+        //Reincio Scanner
+
+        teclado = new Scanner(System.in);
+
+        //redefino el tamaño del array numeros para que me sirva para este ejercicio
+
+        numeros = new int[20];
+
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.println("Introduzca un número entero");
+            numeros[i] = teclado.nextInt();
+                if (numeros[i] >= 0){
+                    sumPos += numeros[i];       //Con este if evaluo el número que acabo de añadir
+                }else{                          //y lo añado al sumatorio que corresponda
+                    sumNeg += numeros[i];
+                }
+        }
+
+        System.out.println("La suma de todos los números positivos es: " +sumPos);
+        System.out.println("La suma de todos los números negativos es: " +sumNeg);
+
+        System.out.println();
+
+
 // 5. Crea un programa que pida veinte números reales por teclado, los almacene en un array
 // y luego lo recorra para calcular y mostrar la media: (suma de valores) / nº de valores.
 // 6. Crea un programa que pida dos valores enteros N y M, luego cree un array de tamaño
