@@ -226,16 +226,15 @@ public class Unidad2_Actividad2 {
 		if(segundos > 59) {
 			segundos = 0;
 			minutos += 1;
+		 	if(minutos > 59) {
+				minutos = 0;
+				horas += 1;
+				if(horas > 12) {
+					horas = 1;
+				}
+			}
 		}
 		
-		if(minutos > 59) {
-			minutos = 0;
-			horas += 1;
-		}
-		
-		if(horas > 12) {
-			horas = 1;
-		}
 		
 		//Con estos if hemos evaluado lo que pasa al añadir un segundo, evaluamos el cambio que supone en segundos
 		//Luego evaluamos los minutos y después finalmente las horas
