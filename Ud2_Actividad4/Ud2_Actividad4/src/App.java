@@ -112,10 +112,76 @@ public class App {
 
 // 5. Crea un programa que pida veinte números reales por teclado, los almacene en un array
 // y luego lo recorra para calcular y mostrar la media: (suma de valores) / nº de valores.
+
+        //reinicio scanner
+        teclado = new Scanner(System.in);
+
+        //Defino un array de 20 elementos, pero por cambiar del tipo double
+        double[] numerosReales = new double[20];
+
+        //Para completar el array usamos un for, además declaro primero una variable para almacenar la 
+        //suma total
+
+        double sumaReales = 0;
+
+        for (int i = 0; i < numerosReales.length; i++) {
+            System.out.println("Introduzca un número real");
+            numerosReales[i] = teclado.nextDouble();
+            sumaReales += numerosReales[i];
+        }
+
+        //Ahora muestro por pantalla el valor medio de los números
+
+        System.out.println("El valor medio de los número introducidos es: " + (sumaReales/numerosReales.length));
+
+        System.out.println();
+
 // 6. Crea un programa que pida dos valores enteros N y M, luego cree un array de tamaño
 // N, escriba M en todas sus posiciones y lo muestre por pantalla.
+
+        //Declaro las variable N y M
+        int n, m;
+
+        System.out.println("El programa le va a pedir dos números enteros por teclado."
+        +"El primer número, N, se usará para indicar el tamaño de un array que se va a crear"
+        +"El segundo número, M, es el que va a completar todos los espacios del array");
+
+        //Pido los dos valores por teclado
+        System.out.println("Introduzca el número N");
+        n = teclado.nextInt();
+
+        System.out.println("Introduzca el número M");
+        m = teclado.nextInt();
+
+        //Creo el array de enteros de longitud n y lo completo con el valor m en todas sus posiciones
+
+        int[] enteros = new int[n];
+        Arrays.fill(enteros, m);
+
+        //Ahora lo muestro por pantalla
+
+        for (int i = 0; i < enteros.length; i++) {
+            System.out.println("{" + enteros[i] + "}");
+        }
+
+        System.out.println();
+
+
 // 7. Crea un programa que pida dos valores enteros P y Q, luego cree un array que contenga
 // todos los valores desde P hasta Q, y lo muestre por pantalla.
+
+        //Aunque se pidan unos valores p y q lo que voy a usar es las variables n y me del ejercicio anterior
+        //Lo que si voy a hacer es volver a solicitar los valores por pantalla
+
+        System.out.println("Se le van a pedir dos números enteros por teclado");
+        
+        System.out.println("Introduzca el primer número");
+        n =  teclado.nextInt();
+
+        System.out.println("Introduzca el segundo número");
+        m = teclado.nextInt();
+
+        //Ahora 
 // 8. Crea un programa que cree un array con 100 números reales aleatorios entre 0.0 y 1.0,
 // utilizando Math.random(), y luego le pida al usuario un valor real R. Por último, mostrará
 // cuántos valores del array son igual o superiores a R.
