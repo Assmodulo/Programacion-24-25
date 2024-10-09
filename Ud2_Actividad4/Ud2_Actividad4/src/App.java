@@ -181,22 +181,188 @@ public class App {
         System.out.println("Introduzca el segundo número");
         m = teclado.nextInt();
 
-        //Ahora 
+        //Ahora el programa va a calcular la diferencia entre P y Q para crear el array evaluando cual es
+        //el número mayor para calcular la diferencia.
+
+        if(n > m){
+            enteros = new int[n - m]; //Dependiendo de cual sea el mayor, se evalua y se define de nuevo el array
+            //Despues de evaluar los números hay que insertar el for para completar el array de acuerdo a las 
+            //opciones. Dentro de cada for para completar el array, puedo ir mostrando el resultado
+            for (int i = m; i < n; i++) {
+                enteros[i] = i;
+                System.out.print("{" + enteros[i] + "}");
+            }
+        }else if(m > n){
+            enteros = new int[m - n];
+            for (int i = n; i < m; i++) {
+                enteros[i] = i;
+                System.out.print("{" + enteros[i] + "}");
+            }
+        }else {
+            System.err.println("El valor de los números es igual, o por alguna otra razón"
+            +"no se puede evaluar el valor ni crear el array");
+        }
+
+        System.out.println();
+
+
 // 8. Crea un programa que cree un array con 100 números reales aleatorios entre 0.0 y 1.0,
 // utilizando Math.random(), y luego le pida al usuario un valor real R. Por último, mostrará
 // cuántos valores del array son igual o superiores a R.
+
+        //Voy a redefinir el array que ya tenia creado para numeros reales
+        numerosReales = new double[100];
+
+        //Creo una variable para almacenar por teclado el valor real que me pide
+        double opcionReal;
+
+        //Reinicio Scanner
+        teclado = new Scanner(System.in);
+
+        //Completo el array con valores aleatorios
+        for (int i = 0; i < numerosReales.length; i++) {
+            numerosReales[i] = Math.random();
+        }
+
+        //Ahora el programa le solicita al usuario un número real y le indico que los valores tienen que estar
+        //comprendidos entre 0.0 y 1.0
+
+        do { 
+            System.out.println("Introduzca un número real comprendido entre 0.0 y 1.0");
+            opcionReal = teclado.nextDouble();
+            if(opcionReal < 0 || opcionReal > 1.0){
+                System.err.println("Introduzca un valor válido para comparar");
+            }
+        } while (opcionReal < 0 || opcionReal > 1.0);
+
+        int contador = 0; //Creo esta variable para que lleve la cuenta de los números iguales o mayores a R
+
+        for (double real : numerosReales) {
+            if(real >= opcionReal){
+                contador++;
+            }
+        }
+
+        //Mostramos por pantalla la cantidad de números iguales o mayores que r que hay en el array
+
+        System.out.println("La cantidad de números iguales o mayores que su elección que existen en el array es: " + contador);
+
+        System.out.println();
+
 // 9. Crea un programa que cree un array de enteros de tamaño 100 y lo rellene con valores
 // enteros aleatorios entre 1 y 10 (utiliza 1 + Math.random()*10). Luego pedirá un valor N
 // y mostrará en qué posiciones del array aparece N.
+
+        //Redefino el tamaño del array de enteros creado en un ejercicio anterior
+        enteros = new int[100];
+
+        //Uso un for para completar el array
+
+        for (int i = 0; i < enteros.length; i++) {
+            enteros[i] = (int)(1 + Math.random()*10);
+        }
+
+        //Para pedir el número por teclado primero reinicio el scanner
+        teclado = new Scanner(System.in);
+
+        //Solicito al usuario que introduzca un valor por teclado entre 1 y 10 asegurandome de que sea así
+        //Creo una opcion int para evaluar
+
+        int opcionEntera;
+
+        do { 
+            System.out.println("Introduzca un número entero comprendido entre 1 y 10");
+            opcionReal = teclado.nextDouble();
+            if(opcionReal < 1 || opcionReal > 10){
+                System.err.println("Introduzca un valor válido para comparar");
+            }
+        } while (opcionReal < 1 || opcionReal > 10);
+
+        for (int i = 0; i < enteros.length; i++) {
+            System.out.println("El numero que usted a seleccionado aparece en la posición : " + i);
+        }
+
+        System.out.println();
+
+
 // 10. Crea un programa para realizar cálculos relacionados con la altura (en metros) de
 // personas. Pedirá un valor N y luego almacenará en un array N alturas introducidas por
-// 2
-// MP_0485 - PROGRAMACIÓN
 // teclado. Luego mostrará la altura media, máxima y mínima, así como cuántas personas
 // miden por encima y por debajo de la media.
+
+        //Esta vez voy a crear un nuevo array para trabajar con los datos despues de que se introduzca el número de datos
+
+        teclado = new Scanner(System.in);
+
+        //Para almacenar la variable uso una de ejercicios anteriores
+
+        System.out.println("Introduzca la cantidad de alturas que va usted a almacenar");
+
+        n = teclado.nextInt();
+
+        //Defino ahora el array
+
+        double [] alturas = new double[n];
+
+        //Defino una variable para ir almacenando el sumatorio de las alturas
+
+        double sumatorioAlturas = 0;
+
+        //Completo ahora el array
+
+        for (int i = 0; i < alturas.length; i++) {
+            teclado = new Scanner(System.in);
+            System.out.println("Introduzca un nuevo valor de altura por teclado");
+            alturas[i] = teclado.nextDouble();
+            sumatorioAlturas += alturas[i];
+        }
+
+        //Para trabajar más cómodo ahora, una vez completo, ordeno el array
+
+        Arrays.sort(alturas);
+
+        //Con esto es más facil calcular la altura mínima y la máxima. Lo muestro todo por pantalla
+
+        System.out.println("La altura mínima introducida es: " + alturas[0]
+        + "La altura máxima introducida es: " + alturas[alturas.length-1]
+        + "La altura media de todas las introducidas es: " + sumatorioAlturas/alturas.length);
+
+        System.out.println();
+
+
 // 11. Crea un programa que cree dos arrays de enteros de tamaño 100. Luego introducirá en
 // el primer array todos los valores del 1 al 100. Por último, deberá copiar todos los valores
 // del primer array al segundo array en orden inverso, y mostrar ambos por pantalla.
+
+        //Para este ejercicio voy a crear dos arrays nuevos
+
+        int [] arrayOrdenado = new int[100];
+        int [] arrayInverso = new int[100];
+
+        //Completo el array ordenado con un for
+        for (int i = 0; i < arrayOrdenado.length; i++) {
+            arrayOrdenado[i] = i + 1;
+        }
+
+        //Completo ahora el arrayInverso
+
+        for (int i = 0; i < arrayOrdenado.length; i++){
+            arrayInverso[(arrayInverso.length-1) - i] = arrayOrdenado[i];
+        }
+
+        //Recorro los dos arrays
+
+        for (int ordenado : arrayOrdenado) {
+            System.out.print("{" + ordenado + "}");
+        }
+
+        for (int desordenado : arrayInverso) {
+            System.out.print("{" + desordenado + "}");
+        }
+
+        System.out.println();
+
+
 // 12. Crea un programa que cree un array de 10 enteros y luego muestre el siguiente menú
 // con distintas opciones:
 // a. Mostrar valores.
@@ -205,14 +371,163 @@ public class App {
 // La opción ‘a’ mostrará todos los valores por pantalla. La opción ‘b’ pedirá un valor V y una
 // posición P, luego escribirá V en la posición P del array. El menú se repetirá indefinidamente hasta
 // que el usuario elija la opción ‘c’ que terminará el programa.
+
+        //Creo un nuevo array de enteros porque ya no me acuerdo de algunos de los anteriores
+
+        int [] enteros10 = new int[10];
+
+        //Después de la clase de hoy ya se que es mejor crear la opción a evaluar como String así que la creo así
+
+        String opcion = "";
+
+        //Como en este ejercicio no se pueden eliminar valores del array, voy a crear una variable contador para chequear que el array no esté completo
+        //Se chequeará antes de introducir un valor para comprobar que el array no esté completo
+
+        int valoresIntroducidos = 0;
+
+        //creo el menú
+
+        do { 
+            
+            //Dentro del bucle, cada vez que itere, que reinicie el Scanner
+
+            teclado = new Scanner(System.in);
+
+            //Indico al usuario las opciones del menú
+
+            System.out.println("Elija una de las siguientes opciones: "
+            +"a) Mostrar valores"
+            +"b) Introducir valores"
+            +"c) Salir");
+
+            opcion = teclado.nextLine();
+
+            //Paso todas las posible entradas de teclado a minúscula
+
+            opcion.toLowerCase();
+
+
+            switch (opcion){
+                case "a":
+                    //Como esta opción es mostrar valores puedo usar un for y evaluar si los valores son null y no mostrarlos o usar el
+                    //contador que he creado para evaluar si hay algún dato introducido, y si lo hay mostrarlos
+                    if(contador > 0){
+                        for (int i = 0; i < enteros10.length; i++) {
+                            if (enteros10[i] != 0) {
+                                System.out.println(enteros[i]);
+                            }
+                        }
+                    }
+                    break;
+                case "b":
+                    //Gracias a la variable contador evaluo si el array está lleno y se decide lo que hace
+                    
+                    if(contador == enteros10.length){
+                        //Al ver que la variable contador es igual a la dimensión del array sabemos que está completo y se lo indicamos
+                        //al usuario. Sólo lo evaluo a igual porque si he hecho bien las cosas en ningún momento contador va a valer más
+                        //de 10
+                        System.out.println("El array de números ya está completo. No se puede añadir ningún dato más");
+
+                    }else{
+                        //Despues de la primera evaluación, si llegamos aquí es porque contador es menor de 10, lo que quiere decir que
+                        //todavia queda espacio libre en el array y se puede añadir un nuevo dato
+                        System.out.println("Introduzca un nuevo número para almacenar");
+
+                        enteros10[contador] = teclado.nextInt();    //Le indico que la posición del array en la que estamos ahora va a ser igual
+                                                                    //al dato que introducimos por teclado
+
+                        System.out.println("Se ha añadido un nuevo dato");  //Indico al usuario que un nuevo dato ha sido añadido
+
+                        contador++; //Incremento el contador para saber cuantos elementos llevo y que no se sobreescriba ninguno de los anteriores
+                    }
+                    break;
+                case "c":
+                    //En esta sección se le va a indicar al systema que ha terminado el programa
+                    System.out.println("Finalizando programa");
+                    break;
+                default:
+                    System.err.println("La opción elegida no es correcta. Tendrá que introducirla otra vez.");
+                    break;        
+            }
+
+        } while (opcion != "c");
+
+        System.out.println();
+
 // 13. Crea un programa que permita al usuario almacenar una secuencia aritmética en un
 // array y luego mostrarla. Una secuencia aritmética es una serie de números que
 // comienza por un valor inicial V, y continúa con incrementos de I. Por ejemplo, con V=1
 // e I=2, la secuencia sería 1, 3, 5, 7, 9… Con V=7 e I=10, la secuencia sería 7, 17, 27, 37… El
 // programa solicitará al usuario V, I además de N (nº de valores a crear).
+
+        //Lo primero le indicamos al usuario en que consiste el programa
+
+        System.out.println("Este programa va a almacenar una secuencia aritmética. Se le va a solicitar en este orde:"
+        +"1-El número inicial de la secuencia"
+        +"2-El número por el que se va a incrementar la secuencia"
+        +"3-La longitud de la secuencia en cantidad de veces que se debe incrementar el valor");
+
+        //Para esto voy a necesitar tres variables del tipo entero que las voy a nombrar como las variables del enunciado, menos n que ya la
+        //tengo definida en ejercicios anteriores
+
+        int valorInicial , incremento;
+
+        //Reinicio la variable de la clase Scanner
+
+        teclado = new Scanner(System.in);
+
+        //Voy a ir solicitando los datos
+
+        System.out.println("Introduzca el Valor Inicial de la secuencia");
+        valorInicial = teclado.nextInt();
+
+        System.out.println("Introduzca el valor por el que se va a incrementar la secuencia cada salto");
+        incremento = teclado.nextInt();
+
+        System.out.println("Introduzca la cantidad de saltos que va a tener la secuencia");
+        n = teclado.nextInt();
+
+        //Ahora que ya tengo el numero de saltos creo el array
+
+        int[] secuencia = new int[n];
+
+        //Ahora hay que completar el array mediante un for
+
+        for (int i = 0; i < secuencia.length; i++) {
+            //Evaluo en este caso si la posición del bucle en la que estamos es la inicial, ya que esa debe de tener como valor
+            //el valor inicial
+            if(i == 0){
+                secuencia[i] = valorInicial;
+            }else{
+                //Si no es la posición inicial le tengo que ir diciendo que incremente el valor de la secuencia para almacenarlo
+                secuencia[i] = valorInicial + incremento;
+            }
+            //Siempre termine la evaluación le digo que incremente de forma permanente el valor inicial para igualarlo con el último valor almacenado
+            //y así se almacene el valor correcto en la siguiente iteración
+            valorInicial += incremento;
+
+            //Voy mostrando los valores por pantalla
+            System.out.print("{" + secuencia[i] + "}");
+        }
+
+        System.err.println("");
+
+
 // 14. Crea un programa que cree un array de enteros e introduzca la siguiente secuencia de
 // valores: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, etc. hasta introducir 10 diez veces, y luego la
 // muestre por pantalla.
+
+        //En este programa lo primero que necesito es calcular cual es la dimensión del array sin hacerlo de cabeza
+        //Para eso voy a usar un contador y un bucle para calcular cual será el tamaño
+
+        int contadorTamanio = 0;
+
+        for(int i = 1; i <= 10; i++){
+            //Ahora debo de hacer un for anidado que me calculase como si fuese a hacer la operación requerida
+            for(int x = 1; x <= i; x++){
+                contadorTamanio++;
+            }
+        }
     }
 
     
