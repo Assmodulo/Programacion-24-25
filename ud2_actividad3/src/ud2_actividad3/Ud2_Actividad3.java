@@ -53,37 +53,37 @@ public class Ud2_Actividad3 {
 		 
 
 		if (dinero >= 500) {
-			bill500 = dinero / 500; //Tengo que castear a int, ya que le dije que el dinero era double
+			bill500 = dinero / 500; 
 			dinero = dinero%500;
 		}
 
 		if (dinero >= 200) {
-			bill200 =  dinero / 200; //Tengo que castear a int, ya que le dije que el dinero era double
+			bill200 =  dinero / 200; 
 			dinero = dinero%200;
 		}
 
 		if (dinero >= 100) {
-			bill100 =  dinero / 100; //Tengo que castear a int, ya que le dije que el dinero era double
+			bill100 =  dinero / 100; 
 			dinero = dinero%100;
 		}
 
 		if (dinero >= 50) {
-			bill50 =  dinero / 50; //Tengo que castear a int, ya que le dije que el dinero era double
+			bill50 =  dinero / 50; 
 			dinero = dinero%50;
 		}
 
 		if (dinero >= 20) {
-			bill20 =  dinero / 20; //Tengo que castear a int, ya que le dije que el dinero era double
+			bill20 =  dinero / 20; 
 			dinero = dinero%20;
 		}
 
 		if (dinero >= 10) {
-			bill10 =  dinero / 10; //Tengo que castear a int, ya que le dije que el dinero era double
+			bill10 =  dinero / 10; 
 			dinero = dinero%10;
 		}
 
 		if (dinero >= 5) {
-			bill5 =  dinero / 5; //Tengo que castear a int, ya que le dije que el dinero era double
+			bill5 =  dinero / 5; 
 			dinero = dinero%5;
 		}
 
