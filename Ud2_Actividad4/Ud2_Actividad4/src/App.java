@@ -142,7 +142,7 @@ public class App {
         //Declaro las variable N y M
         int n, m;
 
-        System.out.println("El programa le va a pedir dos números enteros por teclado."
+        System.out.println("El programa le va a pedir dos números enteros por teclado.\n"
         +"El primer número, N, se usará para indicar el tamaño de un array que se va a crear"
         +"El segundo número, M, es el que va a completar todos los espacios del array");
 
@@ -161,7 +161,7 @@ public class App {
         //Ahora lo muestro por pantalla
 
         for (int i = 0; i < enteros.length; i++) {
-            System.out.println("{" + enteros[i] + "}");
+            System.out.print("{" + enteros[i] + "}");
         }
 
         System.out.println();
@@ -188,13 +188,13 @@ public class App {
             enteros = new int[n - m]; //Dependiendo de cual sea el mayor, se evalua y se define de nuevo el array
             //Despues de evaluar los números hay que insertar el for para completar el array de acuerdo a las 
             //opciones. Dentro de cada for para completar el array, puedo ir mostrando el resultado
-            for (int i = m; i < n; i++) {
+            for (int i = m; i < enteros.length; i++) {
                 enteros[i] = i;
                 System.out.print("{" + enteros[i] + "}");
             }
         }else if(m > n){
             enteros = new int[m - n];
-            for (int i = n; i < m; i++) {
+            for (int i = n; i < enteros.length; i++) {
                 enteros[i] = i;
                 System.out.print("{" + enteros[i] + "}");
             }
@@ -495,7 +495,9 @@ public class App {
 
         for (int i = 0; i < secuencia.length; i++) {
             //Evaluo en este caso si la posición del bucle en la que estamos es la inicial, ya que esa debe de tener como valor
-            //el valor inicial
+            //el valor inicial, podria haberlo indicado fuera diciendo directamente secuenacia[0] = valorInicial, quizá habría sido
+            //más sencillo, pero creo que evaluarlo dentro del for quedaba mejor, aunque quiza´sea más costoso debido a que
+            //en cada iteración del for evalua la condición del if
             if(i == 0){
                 secuencia[i] = valorInicial;
             }else{
@@ -527,6 +529,27 @@ public class App {
             for(int x = 1; x <= i; x++){
                 contadorTamanio++;
             }
+        }
+
+        //Una vez tengo el tamañoo del array debo declararlo
+        int[] secuencia2 = new int[contadorTamanio];
+
+        //Ahora debo de completarlo de la forma que indica el ejercicio
+        //Para ello creo que voy a necesitar tambien una variable que tenga como valor el número que tenemos que manejar
+        int valorSec = 1;   //Lo inicializo a 1 porque es el primer valor que va a tener
+
+        for(int i = 0; i < secuencia2.length; i++){
+            //Debo crear otro for para que imprima el númeroN N veces
+            for(int j = 1; j <= valorSec; j++){
+                secuencia2[i] = valorSec;
+            }
+            //Fuera del primer for debo asegurarme de incrementar el valor que se tiene que usar
+            valorSec++;
+        }
+
+        //Podría hacerlo dentro de los for anteriores pero por no liarme lo voy a hacer con un foreach fuera
+        for(int valSec : secuencia2){
+            System.out.println("{" + valSec + "}");
         }
     }
 
