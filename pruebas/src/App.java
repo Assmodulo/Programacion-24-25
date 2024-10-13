@@ -1,70 +1,76 @@
 import java.util.Scanner;
 
+
 public class App {
     
     public static void main(String[] args) throws Exception {
+        
+        // Necesitamos crear un programa para almacenar las notas de 4 alumnos (llamados “Alumno
+        // 1”, “Alumno 2”, etc.) y 5 asignaturas. El usuario introducirá las notas por teclado y luego el
+        // programa mostrará la nota mínima, máxima y media de cada alumno.
+
         Scanner teclado = new Scanner(System.in);
 
-        String cadena;  //Defino una variable de tipo String que almacenará la cadena que voy a introducir
-        
-        
+        //Creamos la matriz, por sencillez del tipo int
 
-        String cadena2; //Defino una segunda variable de tipo String para almacenar la cadena modificada
+        int notas[][] = new int[4][5];
 
-        //Utilizo las dos variables, cadena y cadena 2, usadas en el ejercicio anterior y creo otra variable cadena tres
+        //Una variable para almacenar la suma de las notas de cada alumno
 
-        String cadena3;
+        int suma = 0;
 
-        //Indico al usuario lo que hace el programa
+        //Dos variables para almacenar la nota máxima y la mínima de cada alumno
 
-        System.out.println("El programa le va a solicitar 3 cadenas distintas:\n"
-        +"La primera será un nombre\n"
-        +"La segunda será el primer apellido\n"
-        +"Y por último la tercera será el segundo apellido");
+        int maxima= 0; //Empieza a cero para poder evaluar las notas desde la primera
+        int minima = 10; //Empieza a diez para poder evaluar las notas desde la primera
 
+        //Declaro una variable para almacenar la nota introducida por teclado
+
+        int nota;
+
+        //Le indico al usuario que va a hacer el programa
+
+        System.out.println("Este programa va a almacenar 5 notas de 4 alumnos diferentes.\n"
+        +"Luego mostrará la nota más alta, la nota más baja y la nota media de cada alumno");
+
+        //Creo el for para completar el array
+
+        for (int i = 0; i < notas.length; i++) {
+            for(int j = 0; j < notas[i].length; j++){
+                System.out.println("Introduzca la primera nota del Alumno" + (i + 1));
+                nota = teclado.nextInt();
+
+                //Vamos evaluando el valor de nota y añadiendolo al sumatorio
+                suma += nota;
+
+                if(nota > maxima){
+                    maxima = nota;
+                } 
+                if(nota < minima){
+                    minima = nota;
+                }
+            }
+            
+            //Después de salir del bucle que completa las notas de un alumno tengo que hacer un par de acciones para que funcione todo bien
+            //Muestro los resultados
+            System.out.println("Estos son los datos del Alumno" + (i + 1) + ":\n"
+            +"La nota máxima es igual a: " + maxima + "\n"
+            +"La nota minima es igual a: " + minima + "\n"
+            +"La nota media del alumno es: " +(double) (suma/notas[i].length));
+
+            //Debo reiniciar el valor de las 3 variables auxiliares para que el programa haga lo que tiene que hacer en la siguiente iteracion
+            suma = 0;
+            minima = 10;
+            maxima = 0;
+
+            //sout para dejar un espacio para el siguiente alumno
+            System.out.println();
+        }
+
+        //Hago el clasico cambio de ejercicio
         System.out.println();
-
-        System.out.println("Despues de todo esto el programa formará una cadena con las tres primeras letras de cada cadena anterior en mayúsculas");
-
-        //Solicito las cadenas
-
+        System.out.println("*****SALTO DE EJERCICIO*****");
         System.out.println();
-
-        System.out.println("Introduzca la primera cadena");
-
-        cadena = teclado.nextLine();
-
-        System.out.println();
-
-        System.out.println("Introduzca la segunda cadena");
-
-        cadena2 = teclado.nextLine();
-
-        System.out.println();
-
-        System.out.println("Introduzca la tercera cadena");
-
-        cadena3 = teclado.nextLine();
-
-        //A partir de ahora debemos de usar el método substring en cada cadena para obtener los tres primeros caracteres, los pasaremos a mayúscuals y los
-        //concatenaremos
-
-        //Defino una variable que almacene el resultado
-
-        String concatenacion = cadena.substring(0, 3) + cadena2.substring(0, 3) + cadena3.substring(0, 3);
-
-        //Convierto a mayúsculas la cadena resultado
-
-        concatenacion = concatenacion.toUpperCase();
-
-        //Muestro el resultado
-
-        System.out.println(concatenacion);
-
-        
-
-
-
 
     }
 }
