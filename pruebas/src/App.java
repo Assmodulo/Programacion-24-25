@@ -3,49 +3,68 @@ import java.util.Scanner;
 public class App {
     
     public static void main(String[] args) throws Exception {
+        Scanner teclado = new Scanner(System.in);
+
+        String cadena;  //Defino una variable de tipo String que almacenará la cadena que voy a introducir
+        
+        
+
+        String cadena2; //Defino una segunda variable de tipo String para almacenar la cadena modificada
+
+        //Utilizo las dos variables, cadena y cadena 2, usadas en el ejercicio anterior y creo otra variable cadena tres
+
+        String cadena3;
+
+        //Indico al usuario lo que hace el programa
+
+        System.out.println("El programa le va a solicitar 3 cadenas distintas:\n"
+        +"La primera será un nombre\n"
+        +"La segunda será el primer apellido\n"
+        +"Y por último la tercera será el segundo apellido");
+
+        System.out.println();
+
+        System.out.println("Despues de todo esto el programa formará una cadena con las tres primeras letras de cada cadena anterior en mayúsculas");
+
+        //Solicito las cadenas
+
+        System.out.println();
+
+        System.out.println("Introduzca la primera cadena");
+
+        cadena = teclado.nextLine();
+
+        System.out.println();
+
+        System.out.println("Introduzca la segunda cadena");
+
+        cadena2 = teclado.nextLine();
+
+        System.out.println();
+
+        System.out.println("Introduzca la tercera cadena");
+
+        cadena3 = teclado.nextLine();
+
+        //A partir de ahora debemos de usar el método substring en cada cadena para obtener los tres primeros caracteres, los pasaremos a mayúscuals y los
+        //concatenaremos
+
+        //Defino una variable que almacene el resultado
+
+        String concatenacion = cadena.substring(0, 3) + cadena2.substring(0, 3) + cadena3.substring(0, 3);
+
+        //Convierto a mayúsculas la cadena resultado
+
+        concatenacion = concatenacion.toUpperCase();
+
+        //Muestro el resultado
+
+        System.out.println(concatenacion);
 
         
 
-        int n;
-        //Reinicio Scanner
-        Scanner teclado = new Scanner(System.in);
 
-// 14. Crea un programa que cree un array de enteros e introduzca la siguiente secuencia de
-// valores: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, etc. hasta introducir 10 diez veces, y luego la
-// muestre por pantalla.
-        //En este programa lo primero que necesito es calcular cual es la dimensión del array sin hacerlo de cabeza
-        //Para eso voy a usar un contador y un bucle para calcular cual será el tamaño
-        int contadorTamanio = 0;
 
-        for (int i = 1; i <= 10; i++) {
-            //Ahora debo de hacer un for anidado que me calculase como si fuese a hacer la operación requerida
-            for (int x = 1; x <= i; x++) {
-                contadorTamanio++;
-            }
-        }
 
-        //Una vez tengo el tamaño del array debo declararlo
-        int[] secuencia2 = new int[contadorTamanio];
-
-        //Ahora debo de completarlo de la forma que indica el ejercicio
-        //Para ello creo que voy a necesitar tambien una variable que tenga como valor el número que tenemos que manejar
-        int valorSec = 1;   //Lo inicializo a 1 porque es el primer valor que va a tener
-
-        for (int i = 0; i < secuencia2.length; i++) {
-            //Debo crear otro for para que imprima el númeroN N veces
-            for (int j = 1; j <= valorSec; j++) {
-                secuencia2[i] = valorSec;
-                if(j<valorSec){
-                    i++;
-                }
-            }
-            //Fuera del primer for debo asegurarme de incrementar el valor que se tiene que usar
-            valorSec++;
-        }
-
-        //Podría hacerlo dentro de los for anteriores pero por no liarme lo voy a hacer con un foreach fuera
-        for (int valSec : secuencia2) {
-            System.out.print("{" + valSec + "}");
-        }
     }
 }

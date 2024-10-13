@@ -7,7 +7,10 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Scanner teclado = new Scanner(System.in); // Declaro objeto de la clase Scanner
-        int numero = 0; //Declaro una variable número que veo que lo voy a necesitar en los primero ejercicios
+        //int numero = 0; //Declaro una variable número que veo que lo voy a necesitar en los primero ejercicios
+        //Al final no uso la variable numero porque inserto los valores directamente en el array, la dejo comentada por si acaso falla en algun
+        //punto que yo no me de cuenta, pero el compilador no dice nada por ahora
+
         int resultado = 0; //Otra variable int que va a ir almacenando resultados
 
 // 1. Crea un programa que pida diez números reales por teclado, los almacene en un array,
@@ -369,7 +372,7 @@ public class App {
         int[] enteros10 = new int[10];
 
         //Después de la clase de hoy ya se que es mejor crear la opción a evaluar como String así que la creo así
-        String opcion = "";
+        String opcion; //De primeras la inicialize con valor "" pero luego me di cuenta de que no me hacia falta inicializar
 
         //Como en este ejercicio no se pueden eliminar valores del array, voy a crear una variable contador para chequear que el array no esté completo
         //Se chequeará antes de introducir un valor para comprobar que el array no esté completo
