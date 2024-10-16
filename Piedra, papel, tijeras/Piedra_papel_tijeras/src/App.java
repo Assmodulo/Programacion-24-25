@@ -43,9 +43,7 @@ public class App {
                     //Al elegir jugar el jugador debe de elegir una de las opciones, esto es otro menú, con do while
                     do{
                         System.out.println("AHORA ELIJA SU JUGADA. MARQUE SU OPCIÓN, TANTO EN MAYÚSCULAS COMO MINÚSCULAS.\n" + 
-                        "P. - PIEDRA" + "\n" +
-                        "L. - PAPEL" + "\n" +
-                        "T. - TIJERAS" + "\n" + 
+                        "V. - VAMOS ALLÁ " + "\n" +
                         "S. - VOLVER ATRÁS");
 
                         System.out.println();
@@ -56,26 +54,9 @@ public class App {
                         //Después de las pruebas vi que lo mejor era empezar a crear métodos para organizar mejor las cosas
 
                         switch (opcion) {
-                            case "P":
-                                System.out.println("PIEDRA, EL ARMA DE UN BÁRBARO!!");
-                                jugadaPlayer = opcion;
-                                jugadaCpu = eleccionCpu();
-                                enfrentamiento = versus(jugadaPlayer, jugadaCpu);
-                                System.out.println(resultado(enfrentamiento));
-                                break;
-                            case "L":
-                                System.out.println("PAPEL, LA HERRAMIENTA DE UN ERUDITO");
-                                jugadaPlayer = opcion;
-                                jugadaCpu = eleccionCpu();
-                                enfrentamiento = versus(jugadaPlayer, jugadaCpu);
-                                System.out.println(resultado(enfrentamiento));
-                                break;
-                            case "T":
-                                System.out.println("TIJERAS, QUE ES LO QUE VAS A CORTAR?");
-                                jugadaPlayer = opcion;
-                                jugadaCpu = eleccionCpu();
-                                enfrentamiento = versus(jugadaPlayer, jugadaCpu);
-                                System.out.println(resultado(enfrentamiento));
+                            case "V":
+                                System.out.println(resultado(versus(eleccionJugador(),eleccionCpu())));
+                                System.out.println();
                                 break;
                             case "S":
                                 System.out.println("SOLO LOS COBARDES SE RETIRAN, VUELVE CUANDO ESTÉS LISTO");
@@ -101,6 +82,50 @@ public class App {
 
     }
 
+    public static String eleccionJugador(){
+
+        String opcion = ""; //Variable opción para el menú, ya que la que definí dentro de main no me sirve
+
+        Scanner teclado = new Scanner(System.in); //Una variable de Scanner, la de main no me vale
+
+        do{
+            System.out.println("AHORA ELIJA SU JUGADA. MARQUE SU OPCIÓN, TANTO EN MAYÚSCULAS COMO MINÚSCULAS.\n" + 
+            "P. - PIEDRA" + "\n" +
+            "L. - PAPEL" + "\n" +
+            "T. - TIJERAS" + "\n");
+
+            System.out.println();
+
+            opcion = teclado.nextLine().toUpperCase(); //Me aseguro de hacer que la opción siempre entre en mayúsculas para comparar mejor
+
+            //Evaluo de nuevo con un switch
+            //Después de las pruebas vi que lo mejor era empezar a crear métodos para organizar mejor las cosas
+
+            switch (opcion) {
+                case "P":
+                    
+                    System.out.println("PIEDRA, EL ARMA DE UN BÁRBARO!!");
+                    System.out.println();
+                    break;
+                case "L":
+
+                    System.out.println("PAPEL, LA HERRAMIENTA DE UN ERUDITO");
+                    System.out.println();
+                    break;
+                case "T":
+
+                    System.out.println("TIJERAS, QUE ES LO QUE VAS A CORTAR?");
+                    System.out.println();
+                    break;
+                default:
+                    System.out.println("ESTÁS NERVIOSO? HAS ELEGIDO UNA OPCIÓN INCORRECTA. VAMOS, PRUEBA OTRA VEZ");
+                    System.out.println();
+            }
+        }while(!opcion.equals("P") &&  !opcion.equals("L") && !opcion.equals("T"));
+
+        return opcion;
+}
+
     public static String eleccionCpu(){
         
         //Creo un array, de el va a coger sus opciones la CPU
@@ -120,15 +145,34 @@ public class App {
     }
 
     public static String versus(String jugador, String cpu){
+        //Ya que aquí recibo por parámetro el String que a generado el método eleccionCpu, voy a evaluarlo par informar al player
+        //de la elección de la cpu
+
+        if(cpu.equals("P")){
+            System.out.println("VOY A ELEGIR LA PIEDRA, A VER SI TE DOY CON ELLA");
+        }
+        
+        if(cpu.equals("L")){
+            System.out.println("PAPEL QUIZÁ? TENDRÉ QUE SER IMAGINATIVO Y VER QUE TE HAGO CON EL");
+        }
+
+        if(cpu.equals("T")){
+            System.out.println("LAS TIJERAS!!! A LA YUGULAR");
+        }
+
+        //Luego ya retorno la concatenación de las dos elecciones para evaluar el resultado
         return jugador + cpu;
     }
 
     public static String resultado(String evaluacion){
+        
         //Defino una variable String para devolver una cadena
 
         String resultado = "";
         
-        //Ahora uso un if para evaluar resultados según el contenido de la variable enfrentamiento
+        //Ahora uso un if para evaluar resultados según el contenido de la variable enfrentamiento. El método que uso es que
+        //la primera letra es la elección del jugador, la de la derecha es la de la cpu, dependiendo de su combinación podemos saber
+        // si ha ganado el jugador, la cpu o es empate.
 
         if(evaluacion.equals("PT") || evaluacion.equals("TL") || evaluacion.equals("LP")){
             resultado = "VAYA. PARECE QUE HAS SIDO MÁS HÁBIL QUE YO... ESTA VEZ\n\nDAME OTRA OPORTUNIDAD... VAMOS... ESTA VEZ GANARÉ YO";
