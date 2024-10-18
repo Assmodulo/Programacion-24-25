@@ -19,18 +19,22 @@ public class App {
         String jugadaPlayer = "", jugadaCpu = "", enfrentamiento = "";
 
 
+        System.out.println("BIENVENIDO A PIEDRA-PAPEL-TIJERAS");
+
         //Creo el primer menú, que será sencillo, para jugar una sola mano, según vaya añadiendo cosas quizá se vaya haciendo más grande
 
         do { 
             
             //Como lo que queremos es que funcione sin parar mostramos la primera información al usuario aquí por ahora
-            System.out.println("BIENVENIDO A PIEDRA-PAPEL-TIJERAS");
-            System.out.println("A CONTINUACIÓN SE LE MOSTRARÁ UN MENÚ. SELECCIONE LA OPCIÓN DESEADA PULSANDO EL NÚMERO DE LA IZQUIERDA");
+            
+            System.out.println("SELECCIONE LA OPCIÓN DESEADA PULSANDO EL NÚMERO DE LA IZQUIERDA");
             System.out.println();
 
             System.out.println(
                 "1. - JUGAR UNA MANO" + "\n" +
-                "2. - SALIR"
+                "2. - INSTRUCCIONES DEL JUEGO" + "\n" +
+                "3. - CONFIGURACIÓN DE LA PARTIDA\n" +
+                "4. - SALIR"
             );
 
             opcion = teclado.nextLine();
@@ -68,7 +72,16 @@ public class App {
                       
                     }while(!"S".equals(opcion));
                     break;
+
                 case "2":
+                    tutorial();
+                    break;
+
+                case "3":
+                    configuracion();
+                    break;    
+
+                case "4":
                     System.out.println("HASTA LA PRÓXIMA PARTIDA. VUELVE CON GANAS");
                     break;
                 default:
@@ -78,9 +91,84 @@ public class App {
                     break;
             }
 
-        } while (!"2".equals(opcion));
+        } while (!"4".equals(opcion));
 
     }
+
+    //Creo un método, llamado tutorial que simplemente nos va a mostrar como funciona el juego
+
+    public static void tutorial(){
+        //voy mostrando por pantalla como funciona
+
+        System.out.println("POR SI NO CONOCIAS EL JUEGO TE VOY A EXPLICAR COMO SE JUEGA");
+        System.out.println("EN PIEDRA-PAPEL-TIJERAS CADA JUGADOR ELIGE EN SECRETO UNA DE LAS TRES OPCIONES");
+        System.out.println("CUANDO CADA UNO DE LOS JUGADORES HA TERMINADO SU ELECCIÓN SE MUESTRAN LAS DOS\n"
+        +"DE FORMA SIMULTANEA");
+        System.out.println("LUEGO HAY QUE VER QUIEN HA GANADO SEGÚN SU ELECCIÓN\n"
+        +"PIEDRA SIEMPRE GANA A TIJERA, POR QUE LAS ROMPE\n"+
+        "PAPEL SIEMPRE GANA A PIEDRAS, PORQUE LA ENVUELVE\n"+
+        "TIJERAS SIEMPRE GANA A PAPEL, PORQUE LO CORTA");
+        System.out.println();
+        System.out.println("ASÍ DE SIMPLE ES EL JUEGO. LO MEJOR ES QUE JUEGUES UNA MANO EN CUANTO PUEDAS");
+        System.out.println("YA VEREMOS SI ERES CAPAZ DE DERROTARME");
+        System.out.println();
+        System.out.println("SI TE HA QUEDADO ALGUNA DUDA PUEDES VOLVER AQUÍ CUANDO QUIERAS");
+    }
+
+    /*He creado un apartado que es configuración de la partida. Dentro de ese apartado voy a crear un menú que
+     * tenga opciones para explicar como configurar la partida y para cambiar esas configuraciones
+     */
+
+    public static void configuracion(){
+        
+        String opcion;
+        
+        do{
+            
+            System.out.println();
+            System.out.println("MENÚ DE CONFIGURACIÓN\n");
+            System.out.println("1. - EXPLICACIÓN");
+            System.out.println("2. - CONFIGURACIÓN");
+            System.out.println("3. - VOLVER");
+
+            Scanner teclado = new Scanner(System.in);
+    
+            opcion = teclado.nextLine().toUpperCase();
+
+            switch(opcion){
+
+                case "1":
+                    tutorialConfiguracion();
+                    break;
+
+                case "2":
+                    break;
+                    
+                case "3":
+                    System.out.println("CONFIGURACIÓN TERMINADA");
+                    break;
+
+                default:
+                    System.out.println("OPCIÓN INCORRECTA. PRUEBA OTRA VEZ");
+                    break;
+            }
+
+        }while(!"3".equals(opcion));
+    }
+
+    /*Creo el método que da una explicación de como funciona la configuración de la partida*/
+
+    public static void tutorialConfiguracion(){
+        System.out.println();
+
+        System.out.println("LA COSA VA ASÍ. CADA JUGADA INDIVIDUAL ES UNA RONDA.");
+        System.out.println("SI QUIERES JUGAR AL MEJOR DE X RONDAS, PUEDES CONFIGURARLO EN ESTE MENÚ");
+        System.out.println("CUANDO ENTRES EN CONFIGURACIÓN SE TE PREGUNTARÁ AL MEJOR DE CUANTAS RONDA QUIERES JUGAR");
+        System.out.println("BUENA SUERTE");
+        System.out.println();
+    }
+
+    //Este método se encarga de dar al jugador una herramienta para elegir su jugada que es el string que devuelve
 
     public static String eleccionJugador(){
 
@@ -126,6 +214,10 @@ public class App {
         return opcion;
 }
 
+    //Este método sirve para que la cpu elija una jugada. Para elegir 1 de entre las 3 jugadas posibles, lo que he hecho es
+    //crear un array en el que almaceno la inicial de cada jugada. Luego hago que el método retorne una de las posiciones del 
+    //array de forma aleatoria
+
     public static String eleccionCpu(){
         
         //Creo un array, de el va a coger sus opciones la CPU
@@ -144,8 +236,13 @@ public class App {
         return cpu[(int)(Math.random()*2)];
     }
 
+    /*En este método se reciben dos parámetros, el primero la elección del jugador, el segundo, la elección de la cpu, en ese orden
+     * siempre. He decidido mostrar por pantalla aquí cual ha sido la elección de la cpu. Al final del método se devuelve la concatenación
+     * de la elección del jugador + la elección de la cpu
+     */
+
     public static String versus(String jugador, String cpu){
-        //Ya que aquí recibo por parámetro el String que a generado el método eleccionCpu, voy a evaluarlo par informar al player
+        //Ya que aquí recibo por parámetro el String que ha generado el método eleccionCpu, voy a evaluarlo par informar al player
         //de la elección de la cpu
 
         if(cpu.equals("P")){
@@ -163,6 +260,11 @@ public class App {
         //Luego ya retorno la concatenación de las dos elecciones para evaluar el resultado
         return jugador + cpu;
     }
+
+    /*En el método resultado, que recibe un parámetro que es el string que devuelve el método versus se evalua ese String
+     * Como la elección del jugador va a ser siempre la primera letra y la elección de la cpu la segunda letra, si la evaluo
+     * con un if y el método equals puedo saber si el jugador ha ganado la ronda, si han empatado o si la cpu ha ganado
+     */
 
     public static String resultado(String evaluacion){
         
