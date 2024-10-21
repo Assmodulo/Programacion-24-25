@@ -2,21 +2,22 @@ import java.util.Scanner;
 
 
 public class App {
+    static char[] rondas;
+    static boolean porRondas = false;
     public static void main(String[] args) throws Exception {
         
         //Lo primero que tengo que hacer es crear un objeto de la clase Scanner porque lo voy a necesitar
 
         Scanner teclado = new Scanner(System.in);
-
-        
-
+       
         //Como voy a tener que crear un menú, o quizás varios, creo una variable String para almacenar la opción seleccionada
 
         String opcion;
 
         //Creo 3 variables string para las jugadas de cada jugador y el resultado
-
-        String jugadaPlayer = "", jugadaCpu = "", enfrentamiento = "";
+        // Después de una serie de cambios estas tres variables las dejo comentadas
+        //Simplemente para sabes que en algún momento las usé
+        // String jugadaPlayer = "", jugadaCpu = "", enfrentamiento = "";
 
 
         System.out.println("BIENVENIDO A PIEDRA-PAPEL-TIJERAS");
@@ -59,6 +60,7 @@ public class App {
 
                         switch (opcion) {
                             case "V":
+                                // En este paso va a mostrar por pantalla el resultado de realizar ciertos métodos de forma encadenada
                                 System.out.println(resultado(versus(eleccionJugador(),eleccionCpu())));
                                 System.out.println();
                                 break;
@@ -142,6 +144,7 @@ public class App {
                     break;
 
                 case "2":
+                    
                     break;
                     
                 case "3":
@@ -154,6 +157,30 @@ public class App {
             }
 
         }while(!"3".equals(opcion));
+    }
+
+    /*Voy a crear el método mediante el cual voy a configurar el mejor de X rondas */
+
+    public static void configuracionRondas(){
+        System.out.println();
+        System.out.println("VAMOS A MODIFICAR LAS RONDAS A LAS QUE VAMOS A JUGAR");
+        
+        int n = 0;
+
+        //vamos a usar un do while para que el valor sea el correcto
+        do { 
+            Scanner teclado = new Scanner(System.in);
+            // Pedimos el valor por teclado y lo almacenamos en una variable n
+            System.out.println("INTRODUZCA POR TECLADO EL MEJOR DE CUANTAS RONDAS VA A GANAR. ASEGURESE DE QUE EL VALOR ES IMPAR");
+            n = teclado.nextInt();
+            if(n % 2 == 1){
+                rondas = new char[n];
+                porRondas = true;
+            }
+
+            // Evaluamos si el valor introducido es     
+        } while (n%2!=1);
+        
     }
 
     /*Creo el método que da una explicación de como funciona la configuración de la partida*/
