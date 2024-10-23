@@ -100,6 +100,7 @@ public class App {
 
                                     //cuando salga del do/while habrá un ganador, hay que evaluar quién, asi que creo un método
                                     evaluacionRondas();
+                                    
                                 }else{
                                     System.out.println("MANO ÚNICA");
                                     System.out.println(resultado(versus(eleccionJugador(),eleccionCpu())));
@@ -387,5 +388,12 @@ public class App {
 
         System.out.println("SEA COMO SEA, SIEMPRE PODEMOS JUGAR OTRA PARTIDA CUANDO QUIERAS. TE ANIMAS?");
         System.out.println();
+
+        //antes de salir de este método, debo de reiniciar contadores de victoria y contador de rondas jugadas, por si el jugador
+        //vuelve a jugar otra partida igual que no haya problema
+
+        vicCpu = 0;
+        vicJug = 0;
+        rondasJuego = 0;
     }
 }
