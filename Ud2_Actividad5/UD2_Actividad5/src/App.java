@@ -170,10 +170,17 @@ public class App {
 
         System.out.println(concatenacion);
 
+        // Después de volver a revisar el ejercicio me he dado cuenta de que se podría hacer en menos lineas de la siguiente forma
+        System.out.println("Introduzca su nombre y sus dos apellidos pulsando enter entre cada uno de ellos");
+        System.out.println(teclado.nextLine().toUpperCase().substring(0, 3) + teclado.nextLine().toUpperCase().substring(0, 3) + teclado.nextLine().toUpperCase().substring(0, 3));
+
+        //De todas formas hay que reconocer que este es un comando muy largo y puede liarse uno al leerlo
         System.out.println();
         System.err.println("********SALTO DE EJERCICIO************");// pongo system err porque en eclipse sale en rojo
                                                                      // y es más visual pero aquí no
         System.out.println();
+
+
 
         // 4. Crea un programa que muestre por pantalla cuantas vocales de cada tipo hay
         // (cuantas
@@ -316,5 +323,40 @@ public class App {
         // Para saber si son iguales debo de eliminar los espacios en blanco de las
         // cadenas, así sabré si son exacatamente iguales
         System.out.println("Son las cadenas iguales?: " + (cadena.replace(" ", "").equals(cadena2.replace(" ", ""))));
+
+        //Dado que en la clase de hoy se ha indicado XDDDD que esta forma es la fuerza bruta y que hay una más fina y elegante voy a intentar
+        // hacerla de esa manera
+        // guiño guiño codazo codazo XDDDDD
+        
+        // La idea es recorrer la cadena con un for comparando el caracter de la posición correspondiente con el opuesto, si en algún momento
+        //son distintos ya sabemos que no es un palíndromo
+        String cadenaNueva;
+
+        System.out.println("Introduce una nueva cadena para evaluarla de forma más fina");
+
+        cadenaNueva = teclado.nextLine().toLowerCase().replace(" ", "");
+        
+        int contFallos = 0;
+
+        for(int i = 0; i < cadenaNueva.length()-1-i; i++){
+            if(cadenaNueva.charAt(i) != cadenaNueva.charAt(cadenaNueva.length()-1-i)){
+                contFallos++;
+            }
+        }
+        // El único problema con este for es que está comparando la cadena completa, por lo que está haciendo iteraciones de más
+        // Por lo tanto, hay que buscar una forma de que solo lo haga por la mitad de la cadena
+        // Con lo cual hay que tener en cuenta si la longitud de la cadena es par o impar
+        //Despúes de hacer que el for recorra la cadena entera y compara todos los caracteres debo de cambira el i<cadenaNueva.length()
+        //por i<=cadenaNueva.length()-1-i
+
+        //Después de probar que ese cambio funciona tanto con cadenas pares o impares sólo me queda la forma de mostrar por pantalla el resultado
+        //Lo hago declarando antes del for contador de fallos. Si al final es mayor de cero no es un palíndromo
+
+        //Evaluo el valor del contador de fallos
+        if(contFallos>0){
+            System.out.println("La cadena introducida no es un palíndromo");
+        }else{
+            System.out.println("La cadena introducida es un palíndromo");
+        }
     }
 }
