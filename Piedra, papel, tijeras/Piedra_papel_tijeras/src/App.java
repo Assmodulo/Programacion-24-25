@@ -2,8 +2,18 @@ import java.util.Scanner;
 
 
 public class App {
-    static char[] rondas;
+
+    //Voy a definir estas variables static aquí para poder usarlas en los métodos. Sirven para que el juego funcione al mejor
+    //de n rondas y para saber si el juego está configurado a juego por rondas
+    static int rondas;
     static boolean porRondas = false;
+
+    //Debo declarar tambien dos contadores para saber cuantas victorias lleva cada jugador
+
+    static int vicJug = 0;//Contador victorias jugador
+    static int vicCpu = 0;//contador victorias Cpu
+    static int rondasJuego = 0;//Contador de las rondas jugadas para este juego
+
     public static void main(String[] args) throws Exception {
         
         //Lo primero que tengo que hacer es crear un objeto de la clase Scanner porque lo voy a necesitar
@@ -61,8 +71,41 @@ public class App {
                         switch (opcion) {
                             case "V":
                                 // En este paso va a mostrar por pantalla el resultado de realizar ciertos métodos de forma encadenada
-                                System.out.println(resultado(versus(eleccionJugador(),eleccionCpu())));
-                                System.out.println();
+
+                                //Primero voy a evaluar si el juego está configurado para jugarse por rondas, y depende del resultado
+                                //haré una cosa u otra
+                                if(porRondas){
+                                    System.out.println("JUEGO POR RONDAS");
+                                    System.out.println();
+                                    boolean salir = false;
+                                    do { 
+                                        rondasJuego++;
+                                        System.out.println("RONDA " + rondasJuego);
+                                        System.out.println(resultado(versus(eleccionJugador(),eleccionCpu())));
+                                        System.out.println();
+                                        //Muestro como va la ronda después de cada mano jugada
+
+                                        System.out.println("JUGADOR: " + vicJug + " VS CPU: " + vicCpu);
+
+                                        if(vicCpu == ((rondas / 2) + 1)){
+                                            salir = true;
+                                        }else if(vicJug == ((rondas / 2) + 1)){
+                                            salir = true;
+                                        }
+                                        if( rondasJuego == rondas){
+                                            salir = true;
+                                        }
+                                       
+                                    } while (!salir);
+
+                                    //cuando salga del do/while habrá un ganador, hay que evaluar quién, asi que creo un método
+                                    evaluacionRondas();
+                                }else{
+                                    System.out.println("MANO ÚNICA");
+                                    System.out.println(resultado(versus(eleccionJugador(),eleccionCpu())));
+                                    System.out.println();
+                                }
+                                
                                 break;
                             case "S":
                                 System.out.println("SOLO LOS COBARDES SE RETIRAN, VUELVE CUANDO ESTÉS LISTO");
@@ -129,13 +172,14 @@ public class App {
             
             System.out.println();
             System.out.println("MENÚ DE CONFIGURACIÓN\n");
-            System.out.println("1. - EXPLICACIÓN");
-            System.out.println("2. - CONFIGURACIÓN");
-            System.out.println("3. - VOLVER");
+            System.out.println("1. - EXPLICACIÓN\n");
+            System.out.println("2. - CONFIGURACIÓN\n");
+            System.out.println("3. - REINICIAR CONFIGURACIÓN\n");
+            System.out.println("4. - VOLVER");
 
             Scanner teclado = new Scanner(System.in);
     
-            opcion = teclado.nextLine().toUpperCase();
+            opcion = teclado.nextLine();
 
             switch(opcion){
 
@@ -144,10 +188,14 @@ public class App {
                     break;
 
                 case "2":
-                    
+                    configuracionRondas();
+                    break;
+                
+                case "3":
+                    reiniciarConfiguracion();
                     break;
                     
-                case "3":
+                case "4":
                     System.out.println("CONFIGURACIÓN TERMINADA");
                     break;
 
@@ -156,7 +204,7 @@ public class App {
                     break;
             }
 
-        }while(!"3".equals(opcion));
+        }while(!"4".equals(opcion));
     }
 
     /*Voy a crear el método mediante el cual voy a configurar el mejor de X rondas */
@@ -174,7 +222,7 @@ public class App {
             System.out.println("INTRODUZCA POR TECLADO EL MEJOR DE CUANTAS RONDAS VA A GANAR. ASEGURESE DE QUE EL VALOR ES IMPAR");
             n = teclado.nextInt();
             if(n % 2 == 1){
-                rondas = new char[n];
+                rondas = n;
                 porRondas = true;
             }
 
@@ -191,8 +239,15 @@ public class App {
         System.out.println("LA COSA VA ASÍ. CADA JUGADA INDIVIDUAL ES UNA RONDA.");
         System.out.println("SI QUIERES JUGAR AL MEJOR DE X RONDAS, PUEDES CONFIGURARLO EN ESTE MENÚ");
         System.out.println("CUANDO ENTRES EN CONFIGURACIÓN SE TE PREGUNTARÁ AL MEJOR DE CUANTAS RONDA QUIERES JUGAR");
+        System.out.println("SI QUIERES VOLVER A JUGAR SÓLO A UNA RONDA ELIGE RESETEAR CONFIGURACIÓN");
         System.out.println("BUENA SUERTE");
         System.out.println();
+    }
+
+    //El método siguiente reincia la configuración por rondas para que vuelva a ser manos individuales
+    public static void reiniciarConfiguracion(){
+        rondas = 0;
+        porRondas = false;
     }
 
     //Este método se encarga de dar al jugador una herramienta para elegir su jugada que es el string que devuelve
@@ -305,12 +360,32 @@ public class App {
 
         if(evaluacion.equals("PT") || evaluacion.equals("TL") || evaluacion.equals("LP")){
             resultado = "VAYA. PARECE QUE HAS SIDO MÁS HÁBIL QUE YO... ESTA VEZ\n\nDAME OTRA OPORTUNIDAD... VAMOS... ESTA VEZ GANARÉ YO";
+            //Despues de añadir el juego por rondas debo evaluar aquí si es un juego por rondas para aumentar contadores
+            if(porRondas){
+                vicJug++;
+            }
             } else if(evaluacion.equals("PP") || evaluacion.equals("TT") || evaluacion.equals("LL")){
             resultado = "NOS HEMOS LEIDO LA MENTE? HABRÁ QUE JUGAR UN DESEMPATE\n\nPREPÁRATE, AHÍ VAMOS DE NUEVO";
             } else {
                 resultado ="NO ESTABAS PREPARADO. TENDRÁS QUE MEJORAR LA PROXIMA VEZ\n\nNO SERÍA JUSTO QUE NO TE DIESE OTRA OPORTUNIDAD, VAMOS, JUEGA DE NUEVO";
+                if(porRondas){
+                    vicCpu++;
+                }
         }
         return resultado;
         
+    }
+
+    public static void evaluacionRondas(){
+        if(vicJug == (rondas / 2) + 1){
+            System.out.println("NOOOOOOOO..... IMPOSIBLE..... COMO HAS PODIDO?");
+        }else if (vicCpu == (rondas / 2) + 1){
+            System.out.println("CREIAS QUE PODIAS GANAR?...DE VERDAD?.... TU?");
+        }else{
+            System.out.println("Y DE TODAS MANERAS NO HEMOS CONSEGUIDO DICTAMINAR UN VENCEDOR");
+        }
+
+        System.out.println("SEA COMO SEA, SIEMPRE PODEMOS JUGAR OTRA PARTIDA CUANDO QUIERAS. TE ANIMAS?");
+        System.out.println();
     }
 }

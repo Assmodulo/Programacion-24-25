@@ -27,6 +27,16 @@ public class App {
         String cadena2; // Defino una segunda variable de tipo String para almacenar la cadena
                         // modificada
 
+        // Como se explicó en clase el otro dia voy a hacerlo primero con el método split
+        //Defino primero el array en el que lo va a almacenar, luego lo recoreré con un for:each
+
+        String[] palabras = cadena.split(" ");
+
+        for(String palabra:palabras){
+            System.out.println(palabra);
+        }
+
+
         /*
          * Con la funcion replace consigo que se cambien los espacios en blanco por el
          * caracter de escape del salto de linea y
